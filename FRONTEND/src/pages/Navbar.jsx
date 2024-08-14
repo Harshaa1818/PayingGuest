@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
 return (
     <>
-    <div className="flex justify-around m-5 border-2">
+    <div className="flex justify-around m-5 border-2 bg-slate-400">
         <div>
             <h1 className="text-2xl">PG booking App</h1>
         </div>
@@ -16,12 +16,12 @@ return (
         </div>
 
         <div className="">
-            <button className="p-3 bg-gray-500 m-5">Sign-in</button>
+            <button className="p-3 bg-gray-500 m-5" onClick={()=>}>Sign-in</button>
             <button className="p-3 bg-gray-300 ">Register</button>
         </div>
     </div>
     <div>
-        <ul className="flex justify-around border-2">
+        <ul className="flex justify-around border-2 bg-slate-200">
             <Link to={"/home"}><li className="p-3">Home</li></Link>
             <Link to={"/about"}><li className="p-3">About</li></Link>
             <Link to={"/contact"}><li className="p-3">Contact</li></Link>
@@ -30,7 +30,7 @@ return (
       </ul>
 
         <div>
-            <h1 className="flex justify-center p-5"> Our Services</h1>
+            <h1 className="flex justify-center p-5 bg-zinc-300"> Our Services</h1>
             <div className="flex justify-around border-2">
                 <div className="relative"></div>
                     <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?cs=srgb&dl=pexels-pixabay-258154.jpg&fm=jpg" className="w-full" style={{ height: "450px", filter: "blur(2px)" }} alt="Service Image" />
