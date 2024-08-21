@@ -1,4 +1,4 @@
-import { AdminService } from '../services/adminService.js'
+import { AdminService } from '../services/admin.service.js'
 
 const getAllProperties = async(req,res) => {
     try{

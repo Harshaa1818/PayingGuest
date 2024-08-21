@@ -10,10 +10,22 @@ const app=express();
 
 app.use(express.json());
 
-app.use("/health",(req,res)=>{
+app.use("/health",(_,res)=>{
     res.send("server running fine")
 
 })
+
+//import routers
+import { userRouter } from './routes/auth.routes.js'
+import { adminRouter } from './routes/admin.routes.js'
+import { ownerRouter} from './routes/owner.routes.js'
+import { visitorRouter} from './routes/visitor.routes.js'
+
+app.use('/user',userRouter)
+app.use('/admin',adminRouter)
+app.use('/owner',ownerRouter)
+app.use('/visitor',visitorRouter)
+
 
 try {
     connectDB()
