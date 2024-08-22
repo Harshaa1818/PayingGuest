@@ -1,33 +1,28 @@
 import mongoose from 'mongoose'
 
-const orderSchema=new mongoose.Schema({
-        visitor: {
+const ownerSchema = new mongoose.Schema({
+    owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-        },
-        property: {
+    },
+    property: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Property',
         required: true,
-        },
-        startDate: {
+    },
+    startDate: {
         type: Date,
         required: true,
-        },
-        endDate: {
+    },
+    endDate: {
         type: Date,
         required: true,
-        },
-        status: {
+    },
+    status: {
         type: String,
         enum: ['pending', 'confirmed', 'cancelled'],
         default: 'pending',
-        },
-
-},
-{
-    timestamps:true
-})
-
-export const Order=mongoose.model("Order",orderSchema)
+    },
+},{timestamps:true})
+export const Owner = mongoose.model('Owner', ownerSchema)

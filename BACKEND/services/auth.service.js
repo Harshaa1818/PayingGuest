@@ -1,4 +1,4 @@
-import { User } from '../models/user.models'
+import { User } from '../models/user.models.js'
 
 class authService{
     static async findbyMailId( email ){

@@ -1,5 +1,5 @@
 import router from 'express';
-import { getAllNearbyProperties, bookProperty, getSpecificProperty } from '../controllers/visitor.controller';
+import { getAllNearbyProperties, bookProperty, getSpecificProperty } from '../controllers/visitor.controller.js';
 
 const visitorRouter = router();
 

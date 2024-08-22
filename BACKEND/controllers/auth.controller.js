@@ -51,7 +51,11 @@ const handleSignUp = async( req,res ) => {
 }
 const handleSignOut = ( req,res ) => {
     try{
-        res.status(200).json({message: "logout successfull"})
+        const user = req.user
+
+        if(!user) return res.status(404).json({message: "user not found"})
+
+        res.status(200).json({message: "logout successfull", user }) 
     }
     catch(error){
         res.status(500).json({message: error.message})
