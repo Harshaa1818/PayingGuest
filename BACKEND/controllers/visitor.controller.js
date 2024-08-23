@@ -7,7 +7,9 @@ const getAllNearbyProperties = ( req,res ) => {
 }
 const bookProperty = ( req,res ) => {}
 
-const getSpecificProperty = ( req,res ) => {}   
+const getSpecificProperty = ( req,res ) => {} 
+
+const deletePropertyFromCart = ( req,res ) => {}
 
 
-export { getAllNearbyProperties, bookProperty, getSpecificProperty }
+export { getAllNearbyProperties, bookProperty, getSpecificProperty, deletePropertyFromCart }
