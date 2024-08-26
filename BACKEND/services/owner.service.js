@@ -1,4 +1,4 @@
-import { Property } from '../models/property.models.js'
+import { Property } from '../models/property.model.js'
 
 class ownerService{
 
