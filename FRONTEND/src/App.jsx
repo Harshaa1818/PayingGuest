@@ -8,10 +8,13 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+
+  localStorage.getItem('isUserLoggedIn') === 'true' ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false)
 
   return (
     <>
-  
+    {isUserLoggedIn ? <LandingPage/> : <SigninPage/>}
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/landing" element={<LandingPage/>}/>
