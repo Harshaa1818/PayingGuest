@@ -1,12 +1,17 @@
 import React from 'react'
+import { AdminDashboard } from './AdminDashboard.jsx'
+import { UserDashboard } from './UserDashboard.jsx'
+import Navbar from './Navbar.jsx';
 
 function LandingPage() {
   return (
     <div>
-      {localStorage.getItem('role') === 'admin' ? <h1>Welcome Admin</h1> : <h1>Welcome User</h1>}
+      <Navbar/>
+      {localStorage.getItem('role') === 'admin' ? <AdminDashboard/> : <UserDashboard/>}
+      </div>
       
-    </div>
+    
   )
 }
 
-export default LandingPage
+export default LandingPage;

@@ -1,24 +1,39 @@
-import { useState } from 'react'
-import {Route, Routes} from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import Navbar from './pages/Navbar.jsx'
-import LandingPage from "./pages/LandingPage.jsx"
 
+import {Route, Routes, useNavigate} from 'react-router-dom'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+import Navbar from './pages/Navbar.jsx'
+import LandingPage from "./pages/LandingPage.jsx"
+import { SigninPage } from './pages/SigninPage.jsx'
+import { SignupPage } from './pages/SignupPage.jsx'
 
-  localStorage.getItem('isUserLoggedIn') === 'true' ? setIsUserLoggedIn(true) : setIsUserLoggedIn(false)
+function App() {
+  
+  
+
+  localStorage.setItem("isLoggedIn",false) 
+ 
+
+  
+
+
 
   return (
     <>
-    {isUserLoggedIn ? <LandingPage/> : <SigninPage/>}
+    
+    
     <Routes>
-      <Route path="/" element={<HomePage/>}/>
+    
       <Route path="/landing" element={<LandingPage/>}/>
-      <Route path="/navbar" element={<Navbar/>}/>
+      <Route path='/signin' element={<SigninPage/>}/>
+      <Route path='/signup' element={<SignupPage/>}/>
+      <Route path='/' element={<Navbar/>}/>
+      <Route path='/about' element={<SignupPage/>}/>
+      <Route path='/contact' element={<SignupPage/>}/>
+      <Route path='/services' element={<SignupPage/>}/>
+
+
+
     </Routes>
     </>
   )

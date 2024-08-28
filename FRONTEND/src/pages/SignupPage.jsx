@@ -13,15 +13,23 @@ const SignupPage = () => {
             navigate('/signin')
             
         })
-        .catch((err)=>console.log(err))
+        .catch((err)=>{
+            alert("registration failed")
+            console.log(err)
+        })
     }
 
-    return(<>
-    <h1>Signup Page</h1>
-    <input type="text"  onChange={(e)=>setName(e.target.value)} placeholder="Enter your name" />
-    <input type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email" />
-    <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder="Enter your password" />
-    <button onClick={handleSignup}>Signup</button>
-    </>)
+    return(
+         <div>
+        <h1 className="text-3xl m-5 flex justify-center font-serif" >SignUp Page</h1>
+        <div className="text-2xl mt-36">
+        <div className="flex justify-center m-10"><input className="border-b-2" type="string" onChange={(e)=>setName(e.target.value)} placeholder="Enter your name" /></div>
+        <div className="flex justify-center m-10"><input className="border-b-2" type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email" /></div>
+        <div className="flex justify-center m-10"><input className="border-b-2" type="password" onChange={(e)=>setPassword(e.target.value)}placeholder="Enter your password" /></div>
+        <div className="flex justify-center m-10  "><button className="bg-blue-200 px-5 py-2 rounded-md" onClick={handleSignup}>Register</button></div>
+        </div>
+        
+    </div>
+)
 }
 export { SignupPage }

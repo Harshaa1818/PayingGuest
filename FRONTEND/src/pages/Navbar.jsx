@@ -1,8 +1,10 @@
 import React from "react";
 import '../App.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+
+    const navigate = useNavigate()
 return (
     <>
     <div className="flex justify-around m-5 border-2 bg-slate-400">
@@ -16,17 +18,17 @@ return (
         </div>
 
         <div className="">
-            <button className="p-3 bg-gray-500 m-5" onClick={()=>}>Sign-in</button>
-            <button className="p-3 bg-gray-300 ">Register</button>
+            <button className="p-3 bg-gray-500 m-5" onClick={()=>navigate('/signin')}>Sign-in</button>
+            <button className="p-3 bg-gray-300" onClick={()=>navigate('/signup')}>Register</button>
         </div>
     </div>
     <div>
         <ul className="flex justify-around border-2 bg-slate-200">
-            <Link to={"/home"}><li className="p-3">Home</li></Link>
-            <Link to={"/about"}><li className="p-3">About</li></Link>
-            <Link to={"/contact"}><li className="p-3">Contact</li></Link>
-            <Link to={"/services"}><li className="p-3">Services</li></Link>
-            <Link to={"/gallery"}><li className="p-3">Gallery</li></Link>
+            <Link to="/home"><li className="p-3">Home</li></Link>
+            <Link to="/about"><li className="p-3">About</li></Link>
+            <Link to="/contact"><li className="p-3">Contact</li></Link>
+            <Link to="/services"><li className="p-3">Services</li></Link>
+            <Link to="/gallery"><li className="p-3">Gallery</li></Link>
       </ul>
 
         <div>
