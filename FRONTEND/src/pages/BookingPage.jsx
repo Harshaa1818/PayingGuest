@@ -12,7 +12,7 @@ function BookingPage({property}) {
         .catch((err)=>{
             alert("booking failed")
             console.log(err)
-        )
+    })
     }
 
 

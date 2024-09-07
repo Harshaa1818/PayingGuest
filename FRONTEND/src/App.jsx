@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage.jsx"
 import { SigninPage } from './pages/SigninPage.jsx'
 import { SignupPage } from './pages/SignupPage.jsx'
 import BookingPage from './pages/BookingPage.jsx'
+import { UserDashboard } from './pages/UserDashboard.jsx'
 
 function App() {
   
@@ -25,13 +26,13 @@ function App() {
     
     <Routes>
     
-      <Route path="/landing" element={<LandingPage/>}/>
+      <Route path="/landing/" element={<LandingPage/>}/>
       <Route path='/signin' element={<SigninPage/>}/>
       <Route path='/signup' element={<SignupPage/>}/>
       <Route path='/' element={<Navbar/>}/>
       <Route path='/about' element={<SignupPage/>}/>
       <Route path='/contact' element={<SignupPage/>}/>
-      <Route path='/services' element={<SignupPage/>}/>
+      <Route path='/user-dashboard' element={<UserDashboard/>}/>
       <Route path='/bookingpage' element={<BookingPage/>}/>
 
 

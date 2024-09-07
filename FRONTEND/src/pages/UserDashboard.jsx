@@ -46,14 +46,14 @@ const UserDashboard = () =>{
 
     const handleSearch = handleBebouncing(search,1000)
     return(
-        <div classname="container">
+        <div className="container">
         <h1>User Dashboard</h1>
         <div>
-            <search className="search-box" onChange={handleSearch} aria-placeholder="search for property area wise"></search>
+            <input type="text" placeholder="search"/>
         </div>
         <div className="content-container">
-            {properties.map((property,index)=>(
-                <div className="card-cotainer">
+            {properties && properties.map((property,index)=>(
+                <div key={index} className="card-cotainer">
                     <div>{property.image}</div>
                     <div>{property.name}</div>
                     <div>{property.price}</div>

@@ -1,10 +1,17 @@
-import React from "react";
+import React,{ useState } from "react";
 import '../App.css'
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
 
     const navigate = useNavigate()
+    const [pgName, setPgName] = useState("")
+
+    const handleSearch = (e) => {
+        navigate(`/user-dashboard`)
+
+
+    }
 return (
     <>
     <div className="flex justify-around m-5 border-2 bg-slate-400">
@@ -13,8 +20,8 @@ return (
         </div>
 
         <div className="">
-            <input placeholder="search for PG" className="border border-gray-300  pl-3" />
-            <button className="p-3">Search</button>
+            <input placeholder="search for PG" onChange={()=>setPgName(e.target.value)}  className="border border-gray-300  pl-3" />
+            <button onClick={handleSearch} className="p-3">Search</button>
         </div>
 
         <div className="">
