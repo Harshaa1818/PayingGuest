@@ -26,6 +26,7 @@ const bookProperty = async( req,res ) => {
 
 const getSpecificProperty = async( req,res ) => {
     const {id} = req.params;
+    let userId = req.user._id;
 
     const property = await propertyService.getProperty({visitor:userId, property: id});
 
