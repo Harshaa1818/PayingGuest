@@ -10,4 +10,11 @@ userRouter.get('/signout', verifyJWT, handleSignOut)
 export { userRouter}
 
 
+/*
 
+
+POST user/signin ==> sign in
+POST user/signup ==> sign up
+GET user/signout ==> sign out
+
+*/

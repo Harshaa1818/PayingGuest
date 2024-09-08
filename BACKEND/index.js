@@ -20,11 +20,15 @@ import { userRouter } from './routes/auth.routes.js'
 import { adminRouter } from './routes/admin.routes.js'
 import { ownerRouter} from './routes/owner.routes.js'
 import { visitorRouter} from './routes/visitor.routes.js'
+import { bookingRouter } from './routes/booking.routes.js';
 
 app.use('/user',userRouter)
 app.use('/admin',adminRouter)
 app.use('/owner',ownerRouter)
 app.use('/visitor',visitorRouter)
+app.use('/book',bookingRouter)
+
+
 
 
 try {
