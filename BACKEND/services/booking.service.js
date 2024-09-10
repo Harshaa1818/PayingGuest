@@ -1,15 +1,15 @@
-import { deletePropertyFromCart } from '../controllers/visitor.controller.js';
+
 import { Order } from '../models/order.models.js'
 
-class propertyService{
+class BookService{
     
     
-    static async bookProperty(property){
-        return await Order.create(property)
+    static async bookProperty(propertyId, userId, startDate, endDate){
+        return await Order.create({visitor: userId, property: propertyId, startDate, endDate})
     }
    
 
 
 }
 
-export { propertyService }
+export { BookService }

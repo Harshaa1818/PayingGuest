@@ -1,34 +1,25 @@
-import { propertyService } from '../services/property.service.js'
+import { visitorService } from '../services/visitor.service.js'
 
 
-const getAllNearbyProperties = ( req,res ) => {
-    const { lat, long } = req.query;
+const getAllProperties = ( req,res ) => {
+    // const { lat, long } = req.query;
 
-    const nearByProperties = AlgoliaService.getNearbyProperties(lat, long)
-
-
-}
-const bookProperty = async( req,res ) => {
-    const  propertyId  = req.params.id;
-    const  userId  = req.user._id;
-    const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
-     
-    const confirmation = await propertyService.bookProperty({ visitor: userId, property: propertyId, startDate, endDate, status: "pending" })
-
-    if(!confirmation){
-        return res.status(400).json({message: "Property not booked"})
+    const nearByProperties = visitorService.getAllProperties()
+    if(!nearByProperties){
+        return res.status(404).json({message: "No properties found"})
     }
+    return res.status(200).json({nearByProperties})
 
-    return res.status(201).json({message: "order placed", confirmation})
 
 }
+
+
 
 const getSpecificProperty = async( req,res ) => {
     const {id} = req.params;
     let userId = req.user._id;
 
-    const property = await propertyService.getProperty({visitor:userId, property: id});
+    const property = await visitorService.getSpecificProperty({ property: id });
 
     if(!property){
         return res.status(404).json({message: "Property not found"})
@@ -37,19 +28,7 @@ const getSpecificProperty = async( req,res ) => {
     return res.status(200).json({message:"property details are: ", property})
 } 
 
-const deletePropertyFromCart = async( req,res ) => {
-
-    const { id } = req.params;
-    const userId = req.user._id;
-    const property = await propertyService.deletePropertyFromCart({property:id, visitor: userId});
-
-    if(!property){
-        return res.status(404).json({message: "Property not found"})
-    }
-
-    return res.status(200).json({message: "Property deleted", property})
-
-}
 
 
-export { getAllNearbyProperties, bookProperty, getSpecificProperty, deletePropertyFromCart }
+
+export { getAllProperties, getSpecificProperty }

@@ -8,7 +8,10 @@ dotenv.config({
 
 const app=express();
 
+//middlewares
 app.use(express.json());
+
+//health check
 
 app.use("/health",(_,res)=>{
     res.send("server running fine")
@@ -22,6 +25,8 @@ import { ownerRouter} from './routes/owner.routes.js'
 import { visitorRouter} from './routes/visitor.routes.js'
 import { bookingRouter } from './routes/booking.routes.js';
 
+//Routes declaration
+
 app.use('/user',userRouter)
 app.use('/admin',adminRouter)
 app.use('/owner',ownerRouter)
@@ -30,7 +35,7 @@ app.use('/book',bookingRouter)
 
 
 
-
+//DB connection and server start
 try {
     connectDB()
     app.listen(process.env.PORT,()=>{
@@ -38,7 +43,7 @@ try {
     })
 
 } catch (error) {
-    err=>console.log(err)
+    //err=>console.log(err)
     
 }
 

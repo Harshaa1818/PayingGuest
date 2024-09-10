@@ -1,6 +1,7 @@
-import ownerService from '../services/owner.service.js' 
+import { ownerService } from '../services/owner.service.js' 
 import { newPropertyValidatorSchema, updatePropertyValidatorSchema  } from '../validators/property.validator.js'
-const getAllProperties = async ( req, res ) => {
+
+const getAllOwnerProperties = async ( req, res ) => {
     try{
         const ownerId = req.user._id;
 
@@ -80,4 +81,4 @@ const updateProperty = ( req, res ) => {
 }
 
 
-export { getAllProperties, addProperty, deleteProperty, updateProperty  }
+export { getAllOwnerProperties, addProperty, deleteProperty, updateProperty  }

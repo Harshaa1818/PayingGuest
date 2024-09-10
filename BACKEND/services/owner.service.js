@@ -20,7 +20,7 @@ class ownerService{
         return await Property.findByIdAndDelete(id)
     }
 }
-export default ownerService
+export  { ownerService }
 
 
   

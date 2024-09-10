@@ -1,5 +1,5 @@
 import router from 'express';
-import { getAllProperties, getPendingProperties, approveProperty, deleteProperty } from '../controllers/admin.controller.js';
+import { getPendingProperties, approveProperty, deleteProperty } from '../controllers/admin.controller.js';
 import { rollCheck } from '../middlewares/rolecheck.js'
 import { verifyJWT } from '../middlewares/auth.js'
 

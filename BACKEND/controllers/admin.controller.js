@@ -1,15 +1,6 @@
 import { AdminService } from '../services/admin.service.js'
 
-const getAllProperties = async(req,res) => {
-    try{
-        const properties = await AdminService.getAllProperty()
-        res.status(200).json({properties})
 
-    }
-    catch(error){
-        res.status(500).json({message: error.message})
-    }
-}
 
 const getPendingProperties = async(req,res) => {
     try{
@@ -21,6 +12,7 @@ const getPendingProperties = async(req,res) => {
         res.status(500).json({message: error.message})
     }
 }
+
 const approveProperty = async ( req,res ) => {
    try {
      const { id } = req.params;
@@ -60,4 +52,4 @@ const deleteProperty = async ( req,res ) => {
 }
 
 
-export { getAllProperties, getPendingProperties, approveProperty, deleteProperty}
+export { getPendingProperties, approveProperty, deleteProperty}
