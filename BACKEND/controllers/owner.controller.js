@@ -26,10 +26,10 @@ const addProperty = async ( req, res ) => {
             return res.status(400).json({error: property.error.message})
         }
 
-        const { owner, name, address, point, coordinates, images, contactNo, approved } = property.data;
+        const {  name, address, images, contactNo } = property.data;
 
 
-        const newProperty = await ownerService.addProperty({ owner: ownerId, name, address, point, coordinates, images, contactNo, approved  })
+        const newProperty = await ownerService.addProperty({ owner: ownerId, name, address, point, coordinates, images, contactNo, approved: false  })
         if(!newProperty){
             return res.status(400).json({message: "Property not added"})
         }
@@ -42,13 +42,18 @@ const addProperty = async ( req, res ) => {
 }
 const deleteProperty = ( req, res ) => {
     try {
-        const owenerId = req.user._id;
+        const ownerId = req.user._id;
         const propertyId = req.params.id;
-        const property = ownerService.deleteProperty( propertyId );
-        if(!property){
+        const property =  ownerService.findPropertyById(propertyId);
+
+       if( property.owner !== ownerId) {
+        return res.status(401).json({message: "You are not authorized to delete this property"})
+       }
+        const confirmation = ownerService.deleteProperty( propertyId );
+        if(!confirmation){
             return res.status(404).json({message: "Property not found"})
         }
-        return res.status(200).json({message: "Property deleted"})
+        return res.status(200).json({message: "Property deleted", confirmation})
 
     } catch (error) {
         res.status(500).json({error: error.message})

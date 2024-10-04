@@ -1,7 +1,7 @@
 import { visitorService } from '../services/visitor.service.js'
 
 
-const getAllProperties = ( req,res ) => {
+const getAllProperties = ( _,res ) => {
     // const { lat, long } = req.query;
 
     const nearByProperties = visitorService.getAllProperties()
@@ -16,8 +16,7 @@ const getAllProperties = ( req,res ) => {
 
 
 const getSpecificProperty = async( req,res ) => {
-    const {id} = req.params;
-    let userId = req.user._id;
+    const { id } = req.params;
 
     const property = await visitorService.getSpecificProperty({ property: id });
 

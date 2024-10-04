@@ -4,8 +4,8 @@ class visitorService{
     static async getAllProperties(){
         return await Property.find({})
     }
-    static async getSpecificProperty(area){
-        return await Property.find({area})
+    static async getSpecificProperty(propertyId){
+        return await Property.findById(propertyId)
     }
 
 }

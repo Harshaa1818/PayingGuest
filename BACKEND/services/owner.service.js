@@ -19,6 +19,10 @@ class ownerService{
     static async deleteProperty(id){
         return await Property.findByIdAndDelete(id)
     }
+    static async findPropertyById(id){
+        return await Property.findeById(id)
+
+    }
 }
 export  { ownerService }
 
