@@ -1,8 +1,12 @@
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import '../App.css'
 import { Link, useNavigate } from "react-router-dom";
 
-function Navbar() {
+export function Navbar() {
+
+    useEffect(()=>{
+        localStorage.setItem("isLoggedIn",false) 
+    },[])
 
     const navigate = useNavigate()
     const [pgName, setPgName] = useState("")
@@ -55,4 +59,4 @@ return (
 );
 }
 
-export default Navbar;
+

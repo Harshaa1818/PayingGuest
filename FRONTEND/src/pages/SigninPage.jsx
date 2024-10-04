@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { useNavigate,Link } from "react-router-dom"
+import { ApiInstance } from "../ApiInstance"
 
 
 const SigninPage = () => {
@@ -9,9 +10,9 @@ const SigninPage = () => {
     const navigate = useNavigate()
 
     const handleSignin = () => {
-        axios.post('http://localhost:8000/signin', {email, password})
+       ApiInstance.post('/user/signin', {email: email, password: password})
         .then((data)=>{
-        localStorage.setItem('isUserLoggedIn', true)
+        localStorage.setItem('isLoggedIn', true)
         data.data.role=='admin' ? localStorage.setItem('role', 'admin') : localStorage.setItem('role', 'user')
         navigate('/landing')
         }   

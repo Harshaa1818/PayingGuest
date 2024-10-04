@@ -1,33 +1,32 @@
-import axios from 'axios'
-import React, { useState } from 'react'
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { ApiInstance } from "../ApiInstance"
 
-function BookingPage({property}) {
-    const [count, setCount] = useState(0)
+export const BookingPage = () => {
+    const [currentProperty, setCurrentProperty] = useState({})
+    const { id } = useParams()
+    useEffect(()=>{
+        ApiInstance.get(`/visitor/property/${id}`)
+    },[])
 
-    const handlePayment = () =>{
-        razorpay({amount: price*count, userId: localStorage.getItem("user")._id, propertyId: property._id})
-        .then((res)=>{
-            alert("payment sucesfull, proerty booked")
+    const handleClick = () =>{
+        ApiInstance.post(`/book/${id}`)
+        .then(()=>{
+            alert("property booked")
         })
-        .catch((err)=>{
-            alert("booking failed")
-            console.log(err)
-    })
-    }
-
-
-    
-    
-
-  return (
-    <div>
-      {property.image}
-      {property.name}
-      {property.price}
-      quantity: {count} <span onClick={()=>setCount(count++)}>+</span><span onclick={()=>setCount(count--)}>-</span>
-      <button onclick={handlePayment}>Proceed to payment</button>
-    </div>
-  )
+        .catch(err=>console.log(err))
+    } 
+    return (
+        <div>
+            {currentProperty && (
+                <div>
+                    <div>{currentProperty.name}</div>
+                    <div>{currentProperty.price}</div>
+                    <div>{currentProperty.description}</div>
+                    <div>{currentProperty.image}</div>
+                    <button onClick={handleClick}>Book Now</button>
+                </div>
+            )}
+        </div>
+    )
 }
-
-export default BookingPage

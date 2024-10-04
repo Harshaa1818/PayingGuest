@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react' 
+import { ApiInstance } from '../../ApiInstance'
 const AdminDashboard = () =>{
 
     const [ properties, setProperties ] = useState([])
-    const [ShowAllProperties, setShowAllProperties] =useState(true)
+   // const [ShowAllProperties, setShowAllProperties] =useState(true)
     const [pendingProperties,setPendingProperties] =useState([])
 
     useEffect(()=>{
-        axios.get("http://loaclhost:8000/admin/getAllProperties")
+        ApiInstance.get('/admin/pending')
         .then((res)=>{
-            setProperties(res.data)
+            setPendingProperties(res.data)
 
         })
         .catch((err)=> console.log(err)
@@ -16,24 +17,25 @@ const AdminDashboard = () =>{
 
     },[])
 
-    const handleGetPendingProperties = () => {
-        setShowAllProperties(false)
-        axios.get("http://loaclhost:8000/admin/getAllProperties")
+   
+    const handleApproveProperty = (id) =>{
+        ApiInstance.post(`/admin/approve/${id}`)
         .then((res)=>{
-            setPendingProperties(res.data)
+            alert("property approved")
+            setPendingProperties(pendingProperties.filter(property=>property._id !== id))
         })
-
-    }
-    const handleApproveProperty = () =>{
-        axios.post(`http://localhost:8000/admin/deleteProperty/:${e._id}`)
-        .then((res)=>{
-            alert("property not approved, its doesnt meet criteria")
-        })
-        .catch(err=>alert("operation failed"))
+        .catch(err=>alert("operation failed",err))
 
     }
 
-    const handleRejectProperty = (e) => {
+    const handleRejectProperty = (id) => {
+        ApiInstance.delete(`/admin/delete/${id}`)
+        .then(()=>{
+            alert("property rejected")
+            setPendingProperties(pendingProperties.filter(property=>property._id !== id))
+
+        })
+        .catch((err)=>alert("operation failed",err))
         
     }
 
@@ -41,26 +43,16 @@ const AdminDashboard = () =>{
     <>
     <h1>Admin Dashboard</h1>
     
-        { ShowAllProperties && properties.map((property,index)=>(
+        { pendingProperties && pendingProperties.map((property,index)=>(
             <div key={index}>
             <div >{property.title}</div>
             <div>{property.name}</div>
+            <button onClick={()=>handleApproveProperty(property._id)}>Approve</button>
+            <button onClick={()=>handleRejectProperty(property._id)}>Reject</button>
             </div>
         ))}
     
-   {ShowAllProperties && <button onClick={handleGetPendingProperties}>Get all Pending Properties</button>}
-
-   {
-    pendingProperties.map((property,index)=>{
-        <div key={index}>
-            <div >{property.title}</div>
-            <div>{property.name}</div>
-            <button onClick={handleApproveProperty}>Approve</button>
-            <button onClick={handleRejectProperty}>Reject</button>
-        </div>
-    })
-
-   }
+   
 
 
 
