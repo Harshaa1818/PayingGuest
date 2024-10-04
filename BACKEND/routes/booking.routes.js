@@ -3,6 +3,6 @@ import { bookProperty } from "../controllers/booking.controller.js";
 
 const bookingRouter = Router();
 
-bookingRouter.post("/", bookProperty)
+bookingRouter.post("/:id", bookProperty)
 
 export { bookingRouter }
