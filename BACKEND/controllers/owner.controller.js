@@ -19,17 +19,18 @@ const getAllOwnerProperties = async ( req, res ) => {
 }
 const addProperty = async ( req, res ) => {
     try{
-        const ownerId = req.user._id;
-        const property = newPropertyValidatorSchema.safeParseAsync(req.body);
+        const ownerId = req.id;
+        const property = await newPropertyValidatorSchema.safeParseAsync(req.body);
 
         if(property.error){
             return res.status(400).json({error: property.error.message})
         }
 
         const {  name, address, images, contactNo } = property.data;
+        console.log(property.data)
 
 
-        const newProperty = await ownerService.addProperty({ owner: ownerId, name, address, point, coordinates, images, contactNo, approved: false  })
+        const newProperty = await ownerService.addProperty({ owner: ownerId, name, address, images, contactNo, approved: false  })
         if(!newProperty){
             return res.status(400).json({message: "Property not added"})
         }

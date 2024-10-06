@@ -6,7 +6,7 @@ dotenv.config({
     path:'./.env'
 })
 
-const app=express();
+const app = express();
 
 //middlewares
 app.use(express.json());
@@ -42,8 +42,9 @@ try {
         console.log(`server is running on port ${process.env.PORT}`)
     })
 
-} catch (error) {
-    //err=>console.log(err)
+} catch (error) {(err)=>{
+        console.log(err)
+    }
     
 }
 
