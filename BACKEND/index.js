@@ -1,6 +1,8 @@
 import express from 'express';
 import { connectDB } from './DB/index.js'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import bodyParser from 'body-parser'
 
 dotenv.config({
     path:'./.env'
@@ -10,6 +12,14 @@ const app = express();
 
 //middlewares
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.static('public'))
+app.use(cors({
+    origin: '*'
+}))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
 //health check
 

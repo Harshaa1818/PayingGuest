@@ -7,11 +7,12 @@ const handleSignIn = async( req,res ) => {
     try{
         const validation = await signInValidationSchema.safeParseAsync(req.body)
 
-        if(!validation.success) return res.status(400).json({message: validation.error.message})
+        if(!validation.success) return res.status(400).json({message: "error at validation", error: validation.error.message})
          
          const { email, password } = req.body;
          
          const user = await authService.findbyMailId(email)
+         
 
          if(!user) return res.status(404).json({message: "user not found"})
           
@@ -35,7 +36,7 @@ const handleSignUp = async( req,res ) => {
     try{
         const validation = await signUpValidationSchema.safeParseAsync(req.body)
         
-        if(validation.error) return res.status(400).json({message: validation.error.message})
+       // if(validation.error) return res.status(400).json({message: `error is : ${validation.error.message}`})
 
             const { email, username, password, contactNo } = validation.data;
 
